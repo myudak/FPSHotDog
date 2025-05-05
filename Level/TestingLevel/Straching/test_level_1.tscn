@@ -1,0 +1,303 @@
+[gd_scene load_steps=11 format=3 uid="uid://bas14aemowmj8"]
+
+[ext_resource type="PackedScene" uid="uid://8m6tuw046wn5" path="res://Prefabs/Interactible/DeathTroll/death_troll.tscn" id="1_08cw0"]
+[ext_resource type="PackedScene" uid="uid://jvesylio1e8a" path="res://Player/player.tscn" id="1_ofk50"]
+
+[sub_resource type="Gradient" id="Gradient_a0umq"]
+offsets = PackedFloat32Array(0, 0.595455)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0409091)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hx8li"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_08cw0"]
+color_ramp = SubResource("Gradient_a0umq")
+noise = SubResource("FastNoiseLite_hx8li")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0umq"]
+transparency = 1
+albedo_texture = SubResource("NoiseTexture2D_08cw0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q7rdb"]
+material = SubResource("StandardMaterial3D_a0umq")
+size = Vector2(23.83, 23.83)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ofk50"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_gk6p4"]
+sky_material = SubResource("ProceduralSkyMaterial_ofk50")
+
+[sub_resource type="Environment" id="Environment_08cw0"]
+background_mode = 1
+background_color = Color(0.843137, 1, 1, 1)
+background_energy_multiplier = 0.3
+sky = SubResource("Sky_gk6p4")
+tonemap_mode = 2
+tonemap_exposure = 1.3
+ssao_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.758686, 0.575932, 0.33416, 1)
+fog_light_energy = 1.95
+
+[node name="TestLevel1" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Maps" type="Node3D" parent="."]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Maps"]
+
+[node name="DeathTroll" parent="Maps/Marker3D" instance=ExtResource("1_08cw0")]
+transform = Transform3D(0.769231, 0, 0, 0, 0.769231, 0, 0, 0, 0.769231, 0, -22.3077, 41.9231)
+
+[node name="Cloud" type="MeshInstance3D" parent="Maps/Marker3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.5, -15, 41.9231)
+mesh = SubResource("PlaneMesh_q7rdb")
+skeleton = NodePath("../..")
+
+[node name="Cloud2" type="MeshInstance3D" parent="Maps/Marker3D"]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0.5, -14.8145, 41.9231)
+mesh = SubResource("PlaneMesh_q7rdb")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 2.75, 42.4231)
+use_collision = true
+size = Vector3(17.5, 0.5, 17)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 3.5, 50.6731)
+use_collision = true
+size = Vector3(17.5, 2, 0.5)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 3.5, 42.1731)
+use_collision = true
+size = Vector3(0.5, 2, 16.5)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.25, 50.4231)
+use_collision = true
+size = Vector3(1, 3.5, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 4.25, 50.4231)
+use_collision = true
+size = Vector3(1, 3.5, 1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, 3.5, 42.1731)
+use_collision = true
+size = Vector3(0.5, 2, 16.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 42.1731)
+use_collision = true
+size = Vector3(7, 5, 7)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Maps/Marker3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.171875)
+operation = 2
+radius = 2.0
+height = 7.46875
+sides = 16
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00233155, -1.25, 0)
+operation = 2
+size = Vector3(4.005, 2.5, 8)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Maps/Marker3D/CSGBox3D2"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -0.0871033, 0, -0.0871033)
+operation = 2
+radius = 2.0
+height = 7.46875
+sides = 16
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0847717, -1.25, -0.0847717)
+operation = 2
+size = Vector3(4.005, 2.5, 8)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0101192, 2.25816, 32.6719)
+use_collision = true
+size = Vector3(5.5, 0.5, 1.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 30.6731)
+use_collision = true
+size = Vector3(5.5, 0.5, 1.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 28.6731)
+use_collision = true
+size = Vector3(5.5, 0.5, 1.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 26.6731)
+use_collision = true
+size = Vector3(5.5, 0.5, 1.5)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -38.3269)
+use_collision = true
+size = Vector3(22, 2, 61)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, -30.8269)
+use_collision = true
+size = Vector3(22, 11.5, 8)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -2.25, -1)
+operation = 2
+size = Vector3(4, 3.5, 10)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Maps/Marker3D/CSGBox3D24/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.75, 0.3125)
+radius = 2.0
+height = 9.625
+sides = 16
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -2.25, -1)
+operation = 2
+size = Vector3(4, 3.5, 10)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Maps/Marker3D/CSGBox3D24/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.75, 0.3125)
+radius = 2.0
+height = 9.625
+sides = 16
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.75, 0, -17.3269)
+use_collision = true
+size = Vector3(0.5, 3, 19)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 0.25, -17.5769)
+use_collision = true
+size = Vector3(0.5, 3.5, 19.5)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, -8.61392)
+use_collision = true
+size = Vector3(5, 5.5, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+size = Vector3(5.39, 0.5, 1.35)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0)
+operation = 2
+size = Vector3(4, 3.5, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Maps/Marker3D/CSGBox3D17/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.75, 0)
+radius = 2.0
+sides = 16
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75, 1.249, -8.07692)
+use_collision = true
+size = Vector3(8.5, 1.5, 0.5)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.75, 1.249, -8.07692)
+use_collision = true
+size = Vector3(8.5, 1.5, 0.5)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 2.499, -8.07692)
+use_collision = true
+size = Vector3(1.5, 8, 1.5)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+use_collision = true
+size = Vector3(1.865, 0.56, 1.865)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 2.499, -8.07692)
+use_collision = true
+size = Vector3(1.5, 8, 1.5)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+use_collision = true
+size = Vector3(1.865, 0.56, 1.865)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 3.999, -27.0769)
+use_collision = true
+size = Vector3(1.5, 11, 1.5)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.999, -27.0769)
+use_collision = true
+size = Vector3(1.5, 11, 1.5)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.25, 3.999, -27.0769)
+use_collision = true
+size = Vector3(1.5, 11, 1.5)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.999, -27.2424)
+use_collision = true
+size = Vector3(20.5, 1, 1.16895)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.749, -26.8269)
+use_collision = true
+size = Vector3(23, 0.5, 2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 14.4231)
+use_collision = true
+size = Vector3(16, 0.5, 22)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Maps/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 12.9231)
+use_collision = true
+size = Vector3(35.5, 44, 10)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.229736, 0.0475769)
+size = Vector3(34.5, 2.45947, 10.3101)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Maps/Marker3D/CSGBox3D8"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00026226, 1.56728, -0.76993)
+operation = 2
+height = 12.5
+sides = 16
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15385, -0.500002)
+operation = 2
+size = Vector3(1, 0.85, 12)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.75, 1.25, 0)
+size = Vector3(2.5, 45.5, 11)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Maps/Marker3D/CSGBox3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.25, 1.25, 0)
+size = Vector3(2.5, 45.5, 11)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Maps/Marker3D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("level_can_be_scratch") instance=ExtResource("1_ofk50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 55)
+level_can_be_scratch = NodePath("../Maps")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_08cw0")

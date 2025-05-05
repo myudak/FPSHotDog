@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bv7bqd4tcsxqw"]
+
+[ext_resource type="Texture2D" uid="uid://b54agcdi6xlhg" path="res://Player/ItemPlayer/Hand/GunPlaceholder/Senjata_PolygonSciFiSpace_Texture_01_A.png" id="1_y5s21"]
+[ext_resource type="Texture2D" uid="uid://cng5hln0byjgm" path="res://Player/ItemPlayer/Hand/GunPlaceholder/Senjata_PolygonSciFiSpace_Emissive_01.png" id="2_ls6jt"]
+
+[resource]
+resource_name = "UniversalMap"
+render_priority = 1
+albedo_texture = ExtResource("1_y5s21")
+emission_enabled = true
+emission_energy_multiplier = 8.6
+emission_texture = ExtResource("2_ls6jt")
+texture_filter = 2

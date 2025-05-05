@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://co50rqkwpmuq8"]
+
+[ext_resource type="Script" uid="uid://cme676f230x0r" path="res://Prefabs/Interactible/Portal/Script/portal.gd" id="1_ba4sl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qvmp"]
+size = Vector3(2, 2.5, 0.001)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba4sl"]
+albedo_color = Color(0, 0.689088, 0.555129, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ba4sl"]
+radial_segments = 5
+rings = 1
+
+[node name="Portal" type="Area3D"]
+script = ExtResource("1_ba4sl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.000499964)
+shape = SubResource("BoxShape3D_1qvmp")
+debug_color = Color(0.861523, 0.361204, 0, 1)
+
+[node name="Position_Spawn" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, -1.5)
+
+[node name="Dummy" type="MeshInstance3D" parent="Position_Spawn"]
+material_override = SubResource("StandardMaterial3D_ba4sl")
+mesh = SubResource("CapsuleMesh_ba4sl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.0455322)
+size = Vector3(3, 3, 0.292725)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+operation = 2
+size = Vector3(2, 2.5, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

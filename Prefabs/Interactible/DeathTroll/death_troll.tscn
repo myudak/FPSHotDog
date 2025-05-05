@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://8m6tuw046wn5"]
+
+[ext_resource type="Script" uid="uid://bq2k7okiowvv4" path="res://Prefabs/Interactible/DeathTroll/script/death_troll.gd" id="1_eguj8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3bn76"]
+size = Vector3(1000, 6, 1000)
+
+[node name="DeathTroll" type="Area3D"]
+transform = Transform3D(0.769231, 0, 0, 0, 0.769231, 0, 0, 0, 0.769231, 0, 0, 0)
+script = ExtResource("1_eguj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+shape = SubResource("BoxShape3D_3bn76")
+debug_color = Color(0.830147, 0.00144373, 0.94496, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
